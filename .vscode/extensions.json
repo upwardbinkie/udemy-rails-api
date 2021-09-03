@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "aki77.rails-db-schema",
+    "aliariff.vscode-erb-beautify",
+    "castwide.solargraph",
+    "eamodio.gitlens",
+    "kaiwood.endwise",
+    "misogi.ruby-rubocop",
+    "ninoseki.vscode-gem-lens",
+    "rebornix.ruby",
+    "wingrunr21.vscode-ruby",
+    "rayhanw.erb-helpers",
+    "ms-vscode-remote.remote-wsl",
+    "esbenp.prettier-vscode",
+    "shan.code-settings-sync",
+    "connorshea.vscode-ruby-test-adapter"
+  ]
+}

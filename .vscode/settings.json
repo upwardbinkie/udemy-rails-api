@@ -1,0 +1,30 @@
+{
+  "files.associations": {
+    "*.erb": "erb",
+    "*.html.erb": "html"
+  },
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "emmet.excludeLanguages": ["markdown"],
+  "emmet.includeLanguages": {
+    "erb": "html"
+  },
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "editor.formatOnSave": true,
+  "rubyTestExplorer.logpanel": true,
+  "rubyTestExplorer.testFramework": "rspec",
+  "solargraph.autoformat": true,
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "sync.autoUpload": true,
+  "sync.gist": "572366d44b51e9d0b268f415fe9e4b3c",
+  "solargraph.commandPath": "/home/upwardbinkie/.rbenv/shims/solargraph"
+}
