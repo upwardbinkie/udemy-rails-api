@@ -15,6 +15,9 @@ references:
 
   bundle_install: &bundle_install
     run:
+      name: Install bundler
+      command: gem install bundler -v 2.2.15
+    run:
       name: Install Dependencies
       command: bundle install
 
