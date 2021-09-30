@@ -19,6 +19,7 @@ jobs:
     steps:
       - checkout
       - ruby/rubocop-check
+
   rspec:
     docker:
       - image: circleci/ruby:3.0.1
