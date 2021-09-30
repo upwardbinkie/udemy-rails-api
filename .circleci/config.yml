@@ -13,10 +13,12 @@ references:
       - image: circleci/ruby:3.0.1
     executor: ruby/default
 
-  bundle_install: &bundle_install
+  install_bundler: &install_bundler
     run:
       name: Install bundler
       command: gem install bundler -v 2.2.15
+
+  bundle_install: &bundle_install
     run:
       name: Install Dependencies
       command: bundle install
@@ -32,17 +34,20 @@ jobs:
   install_dependencies:
     <<: *container_config
     steps:
+      - *install_bundler
       - *bundle_install
 
   lint_ruby:
     <<: *container_config
     steps:
+      - *install_bundler
       - *bundle_install
       - run: rubocop
 
   test:
     <<: *container_config
     steps:
+      - *install_bundler
       - *bundle_install
       - run:
           name: "Run tests with rspec"
