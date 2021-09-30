@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="48" skipped="0" failures="2" errors="0" time="0.881804" timestamp="2021-09-30T13:38:26-05:00" hostname="UPWARDBINKIE-PC">
+<properties>
+<property name="seed" value="33628"/>
+</properties>
+<testcase classname="spec.lib.user_authenticator_spec" name="UserAuthenticator#perform when code is incorrect should rise an error" file="./spec/lib/user_authenticator_spec.rb" time="0.062847"></testcase>
+<testcase classname="spec.lib.user_authenticator_spec" name="UserAuthenticator#perform when code is correct should save the user when it does not exists" file="./spec/lib/user_authenticator_spec.rb" time="0.099986"></testcase>
+<testcase classname="spec.lib.user_authenticator_spec" name="UserAuthenticator#perform when code is correct should reuse already registered user" file="./spec/lib/user_authenticator_spec.rb" time="0.024865"></testcase>
+<testcase classname="spec.lib.user_authenticator_spec" name="UserAuthenticator#perform when code is correct should create and set user&apos;s access token" file="./spec/lib/user_authenticator_spec.rb" time="0.023981"></testcase>
+<testcase classname="spec.models.access_token_spec" name="AccessToken#validations should have valid factory" file="./spec/models/access_token_spec.rb" time="0.001745"></testcase>
+<testcase classname="spec.models.access_token_spec" name="AccessToken#validations should validate token" file="./spec/models/access_token_spec.rb" time="0.001475"></testcase>
+<testcase classname="spec.models.access_token_spec" name="AccessToken#new should have a token present after initialize" file="./spec/models/access_token_spec.rb" time="0.002864"></testcase>
+<testcase classname="spec.models.access_token_spec" name="AccessToken#new should generate unique token" file="./spec/models/access_token_spec.rb" time="0.028068"></testcase>
+<testcase classname="spec.models.access_token_spec" name="AccessToken#new should generate token once" file="./spec/models/access_token_spec.rb" time="0.019278"></testcase>
+<testcase classname="spec.models.article_spec" name="Article#validations tests that factory is valid" file="./spec/models/article_spec.rb" time="0.016159"></testcase>
+<testcase classname="spec.models.article_spec" name="Article#validations has an invalid title" file="./spec/models/article_spec.rb" time="0.011362"></testcase>
+<testcase classname="spec.models.article_spec" name="Article#validations has an invalid content" file="./spec/models/article_spec.rb" time="0.005581"></testcase>
+<testcase classname="spec.models.article_spec" name="Article#validations has an invalid slug" file="./spec/models/article_spec.rb" time="0.004990"></testcase>
+<testcase classname="spec.models.article_spec" name="Article#validations validates the uniqueness of the slug" file="./spec/models/article_spec.rb" time="0.012631"></testcase>
+<testcase classname="spec.models.article_spec" name="Article.recent return articles in the correct order" file="./spec/models/article_spec.rb" time="0.018288"></testcase>
+<testcase classname="spec.models.user_spec" name="User#validations tests that factory is valid" file="./spec/models/user_spec.rb" time="0.005388"></testcase>
+<testcase classname="spec.models.user_spec" name="User#validations validates presence of attributes" file="./spec/models/user_spec.rb" time="0.006124"></testcase>
+<testcase classname="spec.models.user_spec" name="User#validations validates the uniqueness of login" file="./spec/models/user_spec.rb" time="0.010013"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when no code provided behaves like unauthorized_requests should return 401 status code" file="./spec/requests/access_tokens_spec.rb" time="0.023125"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when no code provided behaves like unauthorized_requests should return proper error body" file="./spec/requests/access_tokens_spec.rb" time="0.003778"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when invalid code provided behaves like unauthorized_requests should return 401 status code" file="./spec/requests/access_tokens_spec.rb" time="0.056389"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when invalid code provided behaves like unauthorized_requests should return proper error body" file="./spec/requests/access_tokens_spec.rb" time="0.050086"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when success request should return 201 status code" file="./spec/requests/access_tokens_spec.rb" time="0.024481"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#create when success request should return proper json body" file="./spec/requests/access_tokens_spec.rb" time="0.032679"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when no authorization header provided behaves like forbidden_requests should return 403 status code" file="./spec/requests/access_tokens_spec.rb" time="0.005926"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when no authorization header provided behaves like forbidden_requests should return proper error body" file="./spec/requests/access_tokens_spec.rb" time="0.005395"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when invalid authorization header provided behaves like forbidden_requests should return 403 status code" file="./spec/requests/access_tokens_spec.rb" time="0.005537"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when invalid authorization header provided behaves like forbidden_requests should return proper error body" file="./spec/requests/access_tokens_spec.rb" time="0.006608"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when valid request should return 204 status code" file="./spec/requests/access_tokens_spec.rb" time="0.029905"></testcase>
+<testcase classname="spec.requests.access_tokens_spec" name="AccessTokensController#destroy when valid request should remove the proper access token" file="./spec/requests/access_tokens_spec.rb" time="0.027975"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#index returns a success response" file="./spec/requests/articles_spec.rb" time="0.022982"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#index returns a proper JSON" file="./spec/requests/articles_spec.rb" time="0.016680"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#index returns articles in proper order" file="./spec/requests/articles_spec.rb" time="0.020426"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#index paginates results" file="./spec/requests/articles_spec.rb" time="0.025682"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#index contains pagination links in the response" file="./spec/requests/articles_spec.rb" time="0.023160"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#show returns a success response" file="./spec/requests/articles_spec.rb" time="0.014810"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#show returns a proper JSON" file="./spec/requests/articles_spec.rb" time="0.011950"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when no code provided behaves like forbidden_requests should return 403 status code" file="./spec/requests/articles_spec.rb" time="0.007929"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when no code provided behaves like forbidden_requests should return proper error body" file="./spec/requests/articles_spec.rb" time="0.005180"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when invalid code provided behaves like forbidden_requests should return 403 status code" file="./spec/requests/articles_spec.rb" time="0.005628"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when invalid code provided behaves like forbidden_requests should return proper error body" file="./spec/requests/articles_spec.rb" time="0.005156"></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when authorized when invalid parameters provided should return 422 status code" file="./spec/requests/articles_spec.rb" time="0.032789"><failure message="uninitialized constant ActiveModel::Serializer
+Did you mean?  ActiveModel::Serializers" type="NameError">Failure/Error: serializer: ActiveModel::Serializer::ErrorSerializer,
+
+NameError:
+  uninitialized constant ActiveModel::Serializer
+  Did you mean?  ActiveModel::Serializers
+./app/controllers/articles_controller.rb:24:in `create&apos;
+./spec/requests/articles_spec.rb:106:in `block (5 levels) in &lt;main&gt;&apos;
+./spec/requests/articles_spec.rb:109:in `block (5 levels) in &lt;main&gt;&apos;</failure></testcase>
+<testcase classname="spec.requests.articles_spec" name="ArticlesController#create when authorized when invalid parameters provided should return proper error json" file="./spec/requests/articles_spec.rb" time="0.023009"><failure message="uninitialized constant ActiveModel::Serializer
+Did you mean?  ActiveModel::Serializers" type="NameError">Failure/Error: serializer: ActiveModel::Serializer::ErrorSerializer,
+
+NameError:
+  uninitialized constant ActiveModel::Serializer
+  Did you mean?  ActiveModel::Serializers
+./app/controllers/articles_controller.rb:24:in `create&apos;
+./spec/requests/articles_spec.rb:106:in `block (5 levels) in &lt;main&gt;&apos;
+./spec/requests/articles_spec.rb:114:in `block (5 levels) in &lt;main&gt;&apos;</failure></testcase>
+<testcase classname="spec.routing.access_tokens_spec" name="access tokens routes should route to access_tokens create action" file="./spec/routing/access_tokens_spec.rb" time="0.005845"></testcase>
+<testcase classname="spec.routing.access_tokens_spec" name="access tokens routes should route to access_tokens destroy action" file="./spec/routing/access_tokens_spec.rb" time="0.002402"></testcase>
+<testcase classname="spec.routing.articles_spec" name="/articles routes routes to articles#index" file="./spec/routing/articles_spec.rb" time="0.002123"></testcase>
+<testcase classname="spec.routing.articles_spec" name="/articles routes routes to articles#show" file="./spec/routing/articles_spec.rb" time="0.002193"></testcase>
+<testcase classname="spec.routing.articles_spec" name="/articles routes routes to articles#create" file="./spec/routing/articles_spec.rb" time="0.002409"></testcase>
+</testsuite>
