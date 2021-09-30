@@ -7,24 +7,32 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
+references:
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  rubocop:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
+      - image: circleci/ruby:3.0.1
     executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+      - ruby/rubocop-check
+  rspec:
+    docker:
+      - image: circleci/ruby:3.0.1
+    executor: ruby/default
+    steps:
+      - checkout
+      - ruby/rspec-test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  lint:
     jobs:
-      - build
+      - rubocop
+  test:
+    jobs:
+      - rspec
