@@ -1,72 +1,57 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
-# See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  ruby: circleci/ruby@0.1.2
+  ruby: circleci/ruby@1.1.0
+  node: circleci/node@2
 
-references:
-  container_config: &container_config
-    docker:
-      - image: circleci/ruby:3.0.1
-    executor: ruby/default
-
-  install_bundler: &install_bundler
-    run:
-      name: Install bundler
-      command: gem install bundler -v 2.2.15
-
-  bundle_install: &bundle_install
-    run:
-      name: Install Dependencies
-      command: bundle install
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  checkout_code:
-    <<: *container_config
+  build:
+    docker:
+      - image: cimg/ruby:2.7-node
     steps:
       - checkout
-
-  install_dependencies:
-    <<: *container_config
-    steps:
-      - *install_bundler
-      - *bundle_install
-
-  lint_ruby:
-    <<: *container_config
-    steps:
-      - *install_bundler
-      - *bundle_install
-      - run: rubocop
-
+      - ruby/install-deps
+      # Store bundle cache
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
   test:
-    <<: *container_config
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:2.7-node
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog_test
+          POSTGRES_PASSWORD: ""
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: circleci-demo-ruby
+      PGPASSWORD: ""
+      RAILS_ENV: test
     steps:
-      - *install_bundler
-      - *bundle_install
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       - run:
-          name: "Run tests with rspec"
-          command: rspec
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - ruby/rspec-test
+      - ruby/rubocop-check
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   version: 2
-
-  developer_center:
+  build_and_test:
     jobs:
-      - checkout_code
-      - install_dependencies:
-          requires:
-            - checkout_code
-      - lint_ruby:
-          requires:
-            - install_dependencies
+      - build
       - test:
           requires:
-            - install_dependencies
+            - build
