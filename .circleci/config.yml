@@ -30,9 +30,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  lint:
-    jobs:
-      - rubocop
   test:
     jobs:
+      - rubocop
       - rspec
