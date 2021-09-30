@@ -8,30 +8,57 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 references:
+  container_config: &container_config
+    docker:
+      - image: circleci/ruby:3.0.1
+    executor: ruby/default
+
+  bundle_install: &bundle_install
+    run:
+      name: Install Dependencies
+      command: bundle install
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  rubocop:
-    docker:
-      - image: circleci/ruby:3.0.1
-    executor: ruby/default
+  checkout_code:
+    <<: *container_config
     steps:
       - checkout
-      - ruby/rubocop-check
 
-  rspec:
-    docker:
-      - image: circleci/ruby:3.0.1
-    executor: ruby/default
+  install_dependencies:
+    <<: *container_config
     steps:
-      - checkout
-      - ruby/rspec-test
+      - *bundle_install
+
+  lint_ruby:
+    <<: *container_config
+    steps:
+      - *bundle_install
+      - run: rubocop
+
+  test:
+    <<: *container_config
+    steps:
+      - *bundle_install
+      - run:
+          name: "Run tests with rspec"
+          command: rspec
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  test:
+  version: 2
+
+  developer_center:
     jobs:
-      - rubocop
-      - rspec
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - lint_ruby:
+          requires:
+            - install_dependencies
+      - test:
+          requires:
+            - install_dependencies
